@@ -10,8 +10,9 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+Auth::routes();
 
-
+Route::get('/home', 'HomeController@index');
 
 Route::get('/', 'MainController@indexAction');
 Route::get('/aboutus', 'MainController@aboutusAction');
@@ -25,6 +26,4 @@ Route::get('/orders/{id}', 'MainController@getOrder')-> where ('id', '[0-9]');
 Route::get('/categories', 'MainController@getAllCategories');
 Route::get('/categories/{id}', 'MainController@getCategories')-> where ('id', '[0-9]');
 
-Auth::routes();
-Route::auth();
-Route::get('/home', 'HomeController@index');
+
