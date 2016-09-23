@@ -11,7 +11,40 @@ return [
     ],
     'edit_fields' => [
         'active' => [
-            'type' => 'boolean',
-        ]
+            'type' => 'bool',
+        ],
+        'weight' =>[
+            'type' => 'number',
+        ],
+        'title' => [
+
+            'type' => 'text',
+        ],
+        'url' => [
+            'type' => 'text',
+        ],
+        'position' => [
+            'type' => 'enum',
+            'options' => [
+                'left',
+                'right',
+            ],
+        ],
+    ],
+    'filter' => [
+        'active' => [
+            'type' => 'bool',
+        ],
+        'title' => [
+
+            'type' => 'text',
+        ],
+        'position' => [
+            'type' => 'enum',
+            'options' => [
+                'left',
+                'right',
+            ],
+        ],
     ],
 ];

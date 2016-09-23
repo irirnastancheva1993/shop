@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', 'MainController@indexAction');
 Route::get('/aboutus', 'MainController@aboutusAction');
 Route::get('/main', 'MainController@getMain');
@@ -24,5 +26,5 @@ Route::get('/categories', 'MainController@getAllCategories');
 Route::get('/categories/{id}', 'MainController@getCategories')-> where ('id', '[0-9]');
 
 Auth::routes();
-
+Route::auth();
 Route::get('/home', 'HomeController@index');
