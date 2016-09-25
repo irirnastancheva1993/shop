@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         @foreach($goods as $good)
 
-                            <h2>{{ $good->name }}</h2>
+                            <a href="goods/{{ $good->id }}"><h2>{{ $good->name }}</h2></a>
                             <img src="{{ $good->image }}" class="img-circle" alt="Cinque Terre" width="304" height="236">
                             <h3>
                                 {{ $good->price }}грн

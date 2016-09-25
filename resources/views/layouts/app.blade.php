@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -14,12 +12,6 @@
     <link href="http://localhost/shop/public/css/app.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -37,7 +29,7 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="public/home">Home</a></li>
+                        <li class="active"><a href="/shop/public/home">Home</a></li>
                         <li><a href="/shop/public/home"></a></li>
                         <li><a href="/shop/public/goods">Goods</a></li>
                         <li><a href="/shop/public/cards">Cards</a></li>
@@ -73,7 +65,7 @@
                                     </a>
 
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
+
                                     </form>
                                 </li>
                             </ul>
@@ -84,6 +76,8 @@
         </div>
     </nav>
     <div class="container">
+
+
         @yield('content')
     </div>
     <!-- Scripts -->

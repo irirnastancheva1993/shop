@@ -13,6 +13,17 @@ class GoodsController extends Controller
     {
 //        $cards = \DB::table('cards')->get();
         $goods = Goods::all();
-        return view('goods', compact('goods'));
+        return view('goods.index', compact('goods'));
+    }
+
+    public function show($id)
+    {
+        $good = Goods::where('id', $id)->get();
+
+//        foreach($good as $row) {
+//            echo $row->name . $row->image . $row->price . $row->description . $row->article;
+//        }
+
+        return view('goods.show', ['good' => $good]);
     }
 }

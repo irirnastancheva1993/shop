@@ -19,16 +19,19 @@ Route::get('about', 'PagesController@about');
 Route::get('cards', 'CardsController@index');
 Route::get('cards/{card}', 'CardsController@show')-> where ('card', '[0-9]');
 Route::post('cards/{card}/notes', 'NotesController@store');
-Route::get('/goods', 'GoodsController@index');
-Route::get('/goods/{id}', 'GoodsController@index')-> where ('id', '[0-9]');
-Route::get('/aboutus', 'MainController@aboutusAction');
-Route::get('/main', 'MainController@getMain');
-Route::get('/users', 'MainController@getAllUsers');
-Route::get('/users/{id}', 'MainController@getUser')-> where ('id', '[0-9]');
+Route::get('goods', 'GoodsController@index');
+Route::get('goods/{id}', 'GoodsController@show');
+Route::get('aboutus', 'MainController@aboutusAction');
+Route::get('main', 'MainController@getMain');
+Route::get('users', 'MainController@getAllUsers');
+Route::get('users/{id}', 'MainController@getUser')-> where ('id', '[0-9]');
 
-Route::get('/orders', 'MainController@getAllOrders');
-Route::get('/orders/{id}', 'MainController@getOrder')-> where ('id', '[0-9]');
-Route::get('/categories', 'MainController@getAllCategories');
-Route::get('/categories/{id}', 'MainController@getCategories')-> where ('id', '[0-9]');
+Route::get('orders', 'MainController@getAllOrders');
+Route::get('orders/{id}', 'MainController@getOrder')-> where ('id', '[0-9]');
+//Route::get('/categories', 'MainController@getAllCategories');
+//Route::get('/categories/{id}', 'MainController@getCategories')-> where ('id', '[0-9]');
+Route::get('/shop/', 'HomeController@shopAction');
+Route::get('/category/{id}', 'HomeController@categoryAction');
+Route::get('/shoptest/', 'HomeController@shoptestAction');
 
 

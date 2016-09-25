@@ -24,6 +24,9 @@ class CardsController extends Controller
 
     public function addNote(Note $note)
     {
-        $this->notes()->save($note);
+//        $card = new Card;
+//
+//        $card->notes()->save($note);
+
     }
 }

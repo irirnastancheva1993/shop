@@ -14,6 +14,7 @@ class NotesController extends Controller
 {
     public function store(Request $request, Card $card)
     {
+
 //        return \Request::all();
 //        return request()->all();
 
@@ -26,16 +27,16 @@ class NotesController extends Controller
 //            Note(['body' => $request->body])
 //        );
 
-//        $card->notes()->create([
-//            'body' => $request->body
-//        ]);
+        $card->notes()->create([
+            'body' => $request->body
+        ]);
 
 //        $card->notes()->create($request->all());
+//        $card->addNote(
+//            new Note($request->all())
+//        );
 
-        $card->addNote(
-            new Note($request->all())
-        );
-        return redirect('/shop/public/cards/{{ $card->id }}');
+        return redirect('cards/' . $card->id);
 
 
     }
