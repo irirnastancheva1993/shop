@@ -11,7 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="css/app.css" rel="stylesheet">
+    <link href="http://localhost/shop/public/css/app.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
     <!-- Scripts -->
     <script>
@@ -24,7 +25,6 @@
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
@@ -32,11 +32,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="public/home">Home</a></li>
+                        <li><a href="/shop/public/home"></a></li>
+                        <li><a href="/shop/public/goods">Goods</a></li>
+                        <li><a href="/shop/public/cards">Cards</a></li>
+                        <li><a href="/shop/public/aboutus">About us</a></li>
+                    </ul>
+
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -76,10 +83,12 @@
             </div>
         </div>
     </nav>
-
-    @yield('content')
-
+    <div class="container">
+        @yield('content')
+    </div>
     <!-- Scripts -->
-    <script src="js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="http://localhost/shop/public/js/app.js"></script>
 </body>
 </html>
