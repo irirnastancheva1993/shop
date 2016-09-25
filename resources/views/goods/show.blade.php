@@ -7,13 +7,11 @@
                     <div class="panel-body">
                         @foreach($good as $row)
                             <h2>{{ $row->name }}</h2>
-                            <img src="{{ $row->image }}" class="img-circle" alt="Cinque Terre" width="304" height="236">
+                            <img src="{{ $row->image }}" class="img-rounded" alt="Cinque Terre" width="354" height="286">
                             <h3>
                                 {{ $row->price }}грн
                             </h3>
-                            <p>
-                                {{ $row->description }}
-                            </p>
+                            {{ $row->description }}
                             <p>
                                 {{ $row->article }}
                             </p>
@@ -21,10 +19,14 @@
                         @endforeach
                     </div>
                 </div>
-                <div>
-                <form method="POST">
+<div class="container">
+    <div class="col-md-6">
 
-                    <p>Введите ваше иня:
+    </div>
+
+</div>
+                <form method="POST">
+                    <p>Введите ваше имя:
                     <p><input type="text" class="form-control" name="name"></p>
                     </p>
                     <p>Введите ваш комментарий:
@@ -35,7 +37,7 @@
                     </p>
                 </form>
                 </div>
-
+                <div>
             </div>
         </div>
 @endsection

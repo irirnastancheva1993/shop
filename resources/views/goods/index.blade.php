@@ -11,20 +11,12 @@
                         @foreach($goods as $good)
 
                             <a href="goods/{{ $good->id }}"><h2>{{ $good->name }}</h2></a>
-                            <img src="{{ $good->image }}" class="img-circle" alt="Cinque Terre" width="304" height="236">
+                            <img src="{{ $good->image }}" class="img-rounded" alt="Cinque Terre" width="354" height="286">
                             <h3>
                                 {{ $good->price }}грн
                             </h3>
-                            <p>
-                                {{ $good->description }}
-                            </p>
-                            <p>
-                                {{ $good->article }}
-                            </p>
-
                             <hr>
-
-                            @endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>
