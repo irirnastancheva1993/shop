@@ -39,10 +39,12 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                {{--@foreach($categories as $category)--}}
-                                {{--<li><a href="/shop/public/category/{{ $category->id }}">{{ $category->name }}</a></li>--}}
-                                {{--<li class="divider"></li>--}}
-                                    {{--@endforeach--}}
+                                @if (isset($categories))
+                                @foreach($categories as $category)
+                                <li><a href="/shop/public/category/{{ $category->id }}">{{ $category->name }}</a></li>
+                                <li class="divider"></li>
+                                    @endforeach
+                                    @endif
                             </ul>
                         </li>
                             <ul class="dropdown-menu">
@@ -69,6 +71,8 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
+                    <li><a href="#"><img src="/shop/public/images/icon/commerce/shopping-cart.png"
+                                         class="media-object" style="width:45px">Корзина товаров</a></li>
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
@@ -86,7 +90,7 @@
                                     </a>
 
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-
+                                        {{ csrf_field() }}
                                     </form>
                                 </li>
                             </ul>

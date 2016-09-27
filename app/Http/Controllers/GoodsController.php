@@ -37,4 +37,14 @@ class GoodsController extends Controller
 //        $goods = new Goods;
 //        $goods->comments()->save($comment);
     }
+
+    public function addGood()
+    {
+
+    }
+
+    public function buyGood()
+    {
+
+    }
 }

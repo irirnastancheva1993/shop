@@ -14,7 +14,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $categories = Categories::all();
-        return view('layouts.app', compact('categories'));
+
     }
 }
