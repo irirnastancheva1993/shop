@@ -12,6 +12,8 @@
     <link href="http://localhost/shop/public/css/app.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
+
+
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -25,15 +27,35 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
+                    {{--{{ config('app.name', 'Laravel') }}--}}
+                {{--</a>--}}
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/shop/public/home">Home</a></li>
-                        <li><a href="/shop/public/home"></a></li>
-                        <li><a href="/shop/public/goods">Goods</a></li>
-                        <li><a href="/shop/public/cards">Cards</a></li>
-                        <li><a href="/shop/public/aboutus">About us</a></li>
+                        <li><a href="/shop/public/home"><img src="/shop/public/images/emblem.PNG"></a></li>
+                        <li><a href="/shop/public/home">Главная</a></li>
+                        <li class="dropdown">
+                            <a href="/shop/public/category" class="dropdown-toggle" data-toggle="dropdown">
+                                Велосипеды
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {{--@foreach($categories as $category)--}}
+                                {{--<li><a href="/shop/public/category/{{ $category->id }}">{{ $category->name }}</a></li>--}}
+                                {{--<li class="divider"></li>--}}
+                                    {{--@endforeach--}}
+                            </ul>
+                        </li>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">Dropdown header 1</li>
+                                <li><a href="#">HTML</a></li>
+                                <li><a href="#">CSS</a></li>
+                                <li><a href="#">JavaScript</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Dropdown header 2</li>
+                                <li><a href="#">About Us</a></li>
+                            </ul>
+            <li><a href="/shop/public/cards">Cards</a></li>
+                        <li><a href="/shop/public/aboutus">О нас</a></li>
                     </ul>
 
             </div>
@@ -55,7 +77,6 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="{{ url('/logout') }}"
@@ -76,13 +97,18 @@
         </div>
     </nav>
     <div class="container">
-
-
         @yield('content')
     </div>
     <!-- Scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="http://localhost/shop/public/js/app.js"></script>
+<div class="footer" >
+    <div class="container">
+        <p class="footer-class">Copyrights © 2016 City Cicle. All rights reserved | Design by Aria.</p>
+    </div>
+</div>
+
 </body>
 </html>

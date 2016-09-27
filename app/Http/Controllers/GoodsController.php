@@ -2,28 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Goods;
+use App\Categories;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class GoodsController extends Controller
 {
-    public function index()
+    public function indexAction()
     {
-//        $cards = \DB::table('cards')->get();
         $goods = Goods::all();
-        return view('goods.index', compact('goods'));
+        $categories = Categories::category();
+        return view('goods.index', ['goods' => $goods, 'categories' => $categories]);
     }
 
-    public function show($id)
-    {
+    public function goodAction($id = null){
         $good = Goods::where('id', $id)->get();
+        $categories = Categories::category();
+        $comments = Goods::find($id)->comments()->get();
+        return view('goods.show', ['id' => $id, 'good' => $good, 'categories' => $categories, 'comments' => $comments]);
+    }
 
-//        foreach($good as $row) {
-//            echo $row->name . $row->image . $row->price . $row->description . $row->article;
-//        }
+    public function categoryAction($id){
+        $categories = Categories::category();
+        $category = Categories::find($id);
+        $goods = Categories::find($id)->goods;
+        return view('goods.index', ['goods' => $goods, 'categories' => $categories, 'category' => $category]);
+    }
 
-        return view('goods.show', ['good' => $good]);
+    public function editAction(Comment $comment)
+    {
+//        $goods = new Goods;
+//        $goods->comments()->save($comment);
     }
 }

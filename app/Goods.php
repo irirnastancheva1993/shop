@@ -11,8 +11,8 @@ class Goods extends Model
     }
 
     public function comments(){
-        return $this->hasMany('App\Comment');
+        return $this->hasMany(Comment::class);
     }
 
-    protected $fillable = array('name', 'description', 'image', 'price', 'id', 'article');
+//    protected $fillable = array('name', 'description', 'image', 'price', 'id', 'article');
 }

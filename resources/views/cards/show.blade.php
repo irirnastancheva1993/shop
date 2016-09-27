@@ -16,7 +16,7 @@
                     <input type="text" class="form-control" name="body">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" >Add Note</button>
+                    <button type="submit" class="btn btn-primary">Add Note</button>
                 </div>
             </form>
         </div>

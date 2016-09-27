@@ -12,26 +12,23 @@
 */
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('home', 'HomeController@index');
 
-Route::get('/', 'PagesController@home');
-Route::get('about', 'PagesController@about');
 Route::get('cards', 'CardsController@index');
 Route::get('cards/{card}', 'CardsController@show')-> where ('card', '[0-9]');
 Route::post('cards/{card}/notes', 'NotesController@store');
-Route::get('goods', 'GoodsController@index');
-Route::get('goods/{id}', 'GoodsController@show');
-Route::get('aboutus', 'MainController@aboutusAction');
-Route::get('main', 'MainController@getMain');
-Route::get('users', 'MainController@getAllUsers');
-Route::get('users/{id}', 'MainController@getUser')-> where ('id', '[0-9]');
 
-Route::get('orders', 'MainController@getAllOrders');
-Route::get('orders/{id}', 'MainController@getOrder')-> where ('id', '[0-9]');
-//Route::get('/categories', 'MainController@getAllCategories');
-//Route::get('/categories/{id}', 'MainController@getCategories')-> where ('id', '[0-9]');
-Route::get('/shop/', 'HomeController@shopAction');
-Route::get('/category/{id}', 'HomeController@categoryAction');
-Route::get('/shoptest/', 'HomeController@shoptestAction');
+Route::get('category', 'GoodsController@indexAction');
+Route::get('category/{id}', 'GoodsController@categoryAction');
+Route::get('category/goods/{id}', 'GoodsController@goodAction');
+Route::post('category/goods/{id}/edit', 'CommentController@editAction');
+
+Route::get('aboutus', 'HomeController@about');
+
+Route::get('users', 'HomeController@getAllUsers');
+Route::get('users/{id}', 'HomeController@getUser')-> where ('id', '[0-9]');
+
+Route::get('orders', 'HomeController@getAllOrders');
+Route::get('orders/{id}', 'HomeController@getOrder')-> where ('id', '[0-9]');
 
 
