@@ -25,4 +25,8 @@ class HomeController extends Controller
         return view('pages.aboutus', compact('categories'));
     }
 
+    public  function welcome(){
+        return view ('welcome');
+    }
+
 }

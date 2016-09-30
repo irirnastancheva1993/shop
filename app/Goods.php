@@ -21,5 +21,5 @@ class Goods extends Model
         return $this->belongsToMany(Orders::class);
     }
 
-    protected $fillable = array('name', 'description', 'image', 'price', 'article');
+    protected $fillable = array('name', 'description', 'image', 'price', 'id', 'article');
 }

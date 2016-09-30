@@ -5,22 +5,33 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form method="POST" action="/shop/public/category/goods/{{ $id }}/add">
+                    <form method="POST" action="/shop/public/orders/goods/{{ $id }}">
                         {{ csrf_field() }}
                     @foreach($good as $row)
                         <h2>{{ $row->name }}</h2>
                         <img src="{{ $row->image }}" class="img-rounded" alt="Cinque Terre" width="354" height="286">
-                        <h3>
+                        <h3>Цена за единицу товара:
                             {{ $row->price }}грн
                         </h3>
                         {{ $row->description }}
-                        <p>
+                        <p>Код товара:
                             {{ $row->article }}
                         </p>
                         <hr>
                     @endforeach
-                        <p class="add-re"><input type="submit" class="btn btn-primary" name="add" value="Добавить в корзину" >
-                        <input type="submit" class="btn btn-primary" name="buy" value="Купить" ></p>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="count">Количество:</label>
+                            <div class="col-xs-2" id="count">
+                                <select class="form-control" name="count">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                        </div>
+                            <p class="add-re"><input type="submit" class="btn btn-primary" value="Добавить в корзину" >
+                            </p>
                     </form>
                 </div>
             </div>

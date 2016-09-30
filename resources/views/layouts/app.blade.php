@@ -40,6 +40,13 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @if (isset($categories))
+
+                                    {{--{{ $categories= \App\Categories::category() }}                               --}}
+                                    {{--@foreach($categories as $key => $value)--}}
+                                        {{--<li><a href="/shop/public/category/{{ $value['id'] }}">{{ $value['name'] }}</a></li>--}}
+                                        {{--<li class="divider"></li>--}}
+                                    {{--@endforeach--}}
+
                                 @foreach($categories as $category)
                                 <li><a href="/shop/public/category/{{ $category->id }}">{{ $category->name }}</a></li>
                                 <li class="divider"></li>
@@ -71,7 +78,7 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="#"><img src="/shop/public/images/icon/commerce/shopping-cart.png"
+                    <li><a href="/shop/public/basket"><img src="/shop/public/images/icon/commerce/shopping-cart.png"
                                          class="media-object" style="width:45px">Корзина товаров</a></li>
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
