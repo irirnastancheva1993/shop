@@ -4,15 +4,20 @@
     <div class="container">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
+                <nav class="breadcrumb">
+                    <a class="breadcrumb-item" href="/shop/public/category">Категории</a> >>
+                    <a class="breadcrumb-item" href="/shop/public/category/{{ $category->id }}">{{ $category->name }}</a> >>
+                    @foreach($good as $row)<span class="breadcrumb-item active">{{ $row->name }}</span>
+                </nav>
                 <div class="panel-body">
                     <form method="POST" action="/shop/public/orders/goods/{{ $id }}">
                         {{ csrf_field() }}
-                    @foreach($good as $row)
-                        <h2>{{ $row->name }}</h2>
-                        <img src="{{ $row->image }}" class="img-rounded" alt="Cinque Terre" width="354" height="286">
-                        <h3>Цена за единицу товара:
+
+                        <h4>{{ $row->name }}</h4>
+                        <img src="{{ $row->image }}" class="img-rounded" alt="Cinque Terre" width="236" height="191">
+                        <h4>Цена за единицу товара:
                             {{ $row->price }}грн
-                        </h3>
+                        </h4>
                         {{ $row->description }}
                         <p>Код товара:
                             {{ $row->article }}
@@ -37,7 +42,7 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h2>Комментарии: </h2>
+                    <h4>Комментарии: </h4>
                     @foreach($comments as $comment)
                         <div class="media">
                             <div class="media-left">
@@ -57,9 +62,9 @@
                         @else <input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
                             @endif
                         <input type="hidden" name="goods_id" value="{{ $id }}">
-                        <p>Введите ваш комментарий:
+                        <p><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Введите ваш комментарий:
                         <p><textarea  class="form-control" name="text"></textarea></p>
-                        <p class="add-re"><input type="submit" class="btn btn-primary" value="Добавить комментарий" ></p>
+                        <p class="add-re"><input type="submit" class="btn btn-primary" value="Добавить комментарий"></p>
                     </form>
                 </div>
             </div>

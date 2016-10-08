@@ -13,16 +13,19 @@ class GoodsController extends Controller
 {
     public function indexAction()
     {
-        $goods = Goods::all();
         $categories = Categories::category();
-        return view('goods.index', ['goods' => $goods, 'categories' => $categories]);
+        return view('goods.category', ['categories' => $categories]);
     }
 
     public function goodAction($id = null){
         $good = Goods::where('id', $id)->get();
+        foreach ($good as $item){
+            $category_id = $item->categories_id;
+        }
+        $category = Categories::find($category_id);
         $categories = Categories::category();
         $comments = Goods::find($id)->comments()->get();
-        return view('goods.show', ['id' => $id, 'good' => $good, 'categories' => $categories, 'comments' => $comments]);
+        return view('goods.show', ['id' => $id, 'good' => $good, 'categories' => $categories, 'category' => $category, 'comments' => $comments]);
     }
 
     public function categoryAction($id){

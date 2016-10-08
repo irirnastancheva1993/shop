@@ -4,122 +4,89 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="http://localhost/shop/public/css/app.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-
-
-
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- Branding Image -->
-                {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
-                    {{--{{ config('app.name', 'Laravel') }}--}}
-                {{--</a>--}}
-                    <ul class="nav navbar-nav">
-                        <li><a href="/shop/public/home"><img src="/shop/public/images/emblem.PNG"></a></li>
-                        <li><a href="/shop/public/home">Главная</a></li>
-                        <li class="dropdown">
-                            <a href="/shop/public/category" class="dropdown-toggle" data-toggle="dropdown">
-                                Велосипеды
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                @if (isset($categories))
-
-                                    {{--{{ $categories= \App\Categories::category() }}                               --}}
-                                    {{--@foreach($categories as $key => $value)--}}
-                                        {{--<li><a href="/shop/public/category/{{ $value['id'] }}">{{ $value['name'] }}</a></li>--}}
-                                        {{--<li class="divider"></li>--}}
-                                    {{--@endforeach--}}
-
-                                @foreach($categories as $category)
-                                <li><a href="/shop/public/category/{{ $category->id }}">{{ $category->name }}</a></li>
-                                <li class="divider"></li>
-                                    @endforeach
-                                    @endif
-                            </ul>
-                        </li>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-header">Dropdown header 1</li>
-                                <li><a href="#">HTML</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-header">Dropdown header 2</li>
-                                <li><a href="#">About Us</a></li>
-                            </ul>
-            <li><a href="/shop/public/cards">Cards</a></li>
-                        <li><a href="/shop/public/aboutus">О нас</a></li>
-                    </ul>
-
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    <li><a href="/shop/public/basket"><img src="/shop/public/images/icon/commerce/shopping-cart.png"
-                                         class="media-object" style="width:45px">Корзина товаров</a></li>
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
-        @yield('content')
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li><a href="/shop/public/home"><img src="/shop/public/images/emblem.PNG" width="54" height="44"></a></li>
+                <li><a href="/shop/public/home">Главная</a></li>
+                <li class="dropdown">
+                    <a href="/shop/public/category" class="dropdown-toggle" data-toggle="dropdown">
+                        Велосипеды
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/shop/public/category/1">ГИБРИД/ГОРОДСКОЙ</a></li>
+                        <li><a href="/shop/public/category/2">ТРИАТЛОН</a></li>
+                        <li><a href="/shop/public/category/3">ФИКС</a></li>
+                        <li><a href="/shop/public/category/4">ЦИКЛОКРОСС</a></li>
+                        <li><a href="/shop/public/category/5">ДОРОЖНЫЙ ЖЕНСКИЙ</a></li>
+                        <li><a href="/shop/public/category/6">ТАНДЕМ</a></li>
+                        {{--<li class="divider"></li>--}}
+                    </ul>
+                    {{--<ul class="dropdown-menu">--}}
+                        {{--@if (isset($categories))--}}
+                            {{--@foreach($categories as $category)--}}
+                                {{--<li><a href="/shop/public/category/{{ $category->id }}">{{ $category->name }}</a></li>--}}
+                                {{--<li class="divider"></li>--}}
+                            {{--@endforeach--}}
+                        {{--@endif--}}
+                    {{--</ul>--}}
+                </li>
+                <li><a href="/shop/public/aboutus">О нас</a></li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <ul class="nav navbar-nav">
+                &nbsp;
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (Auth::guest())
+                    <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Вход</a></li>
+                    <li><a href="{{ url('/register') }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Регистрация</a></li>
+                @else
+                    <li><a href="/shop/public/basket"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Корзина товаров</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ url('/logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
+        </div>
     </div>
-    <!-- Scripts -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="http://localhost/shop/public/js/app.js"></script>
+</nav>
+<div class="container">
+    @yield('content')
+</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="http://localhost/shop/public/js/app.js"></script>
 <div class="footer" >
     <div class="container">
         <p class="footer-class">Copyrights © 2016 City Cicle. All rights reserved | Design by Aria.</p>
     </div>
 </div>
-
 </body>
 </html>
