@@ -27,6 +27,7 @@ class AdminProductsController extends Controller
             'name' => 'required|max:255',
             'price' => 'required',
             'image' => 'required',
+//            'categories_id' => 'required'
 //            'description' => 'required',
 //            'article' => 'required',
         ]);
@@ -37,6 +38,8 @@ class AdminProductsController extends Controller
             'image' => $request->image,
 //            'description' => $request->description,
 //            'article' => $request->article,
+//            'categories_id' => $request->categories_id
+
         ]);
 
         return redirect('/admin/goods');
@@ -51,6 +54,8 @@ class AdminProductsController extends Controller
             'image' => 'required',
             'description' => 'required',
             'article' => 'required',
+//            'categories_id' => 'required'
+
         ]);
 
         \DB::table('goods')->insertGetId([
@@ -59,6 +64,8 @@ class AdminProductsController extends Controller
             'image' => $request->image,
             'description' => $request->description,
             'article' => $request->article,
+//            'categories_id' => $request->categories_id
+
         ]);
 
 

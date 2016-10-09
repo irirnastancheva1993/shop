@@ -51,6 +51,6 @@ class ApiController extends Controller
 
     public function destroyOrders($id)
     {
-
+//        \DB::table('orders')->where('id', $id)->delete();
     }
 }

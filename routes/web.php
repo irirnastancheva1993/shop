@@ -19,7 +19,7 @@ Route::get('basket', 'OrdersController@basketGoods');
 Route::post('basket/update', 'OrdersController@updateBasket');
 Route::post('orders/goods/{id}', 'OrdersController@successfulAdd');
 
-Route::group(['prefix' => 'admin'], function (){
+Route::group(['prefix' => 'admin'/*, 'middleware' => 'auth:admin'*/], function (){
     Route::get('log', 'Admin\LoginController@index');
     Route::post('log', 'Admin\LoginController@login');
 
@@ -45,7 +45,7 @@ Route::group(['prefix' => 'admin'], function (){
 });
 
 Route::group(['prefix' => 'api.v1', 'middleware' => 'auth:api'], function(){
-    Route::post('/short', 'UrlMapperController@store');
+    Route::resource('goods', 'Api\GoodsController');
     Route::get('categories', 'ApiController@categories');
     Route::get('categories/goods/{id}', 'ApiController@getGoodId');
     Route::get('categories/{id}', 'ApiController@categoryGoods');
