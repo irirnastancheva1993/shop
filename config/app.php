@@ -182,7 +182,7 @@ return [
 
 
         //prodactin
-        Frozennode\Administrator\AdministratorServiceProvider::class,
+//        Frozennode\Administrator\AdministratorServiceProvider::class,
 
         //only development
         Barryvdh\Debugbar\ServiceProvider::class,

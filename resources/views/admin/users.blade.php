@@ -4,26 +4,30 @@
         <div class="col-sm-offset-1 col-sm-10">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Добавить категорию:
+                    Добавить нового пользователя:
                 </div>
-
                 <div class="panel-body">
-                    <!-- Display Validation Errors -->
                 @include('admin.errors')
-
-                <!-- New Task Form -->
-                    <form action="{{ url('admin/categories')}}" method="POST" class="form-horizontal">
+                    <form action="{{ url('admin/users')}}" method="POST" class="form-horizontal">
                     {{ csrf_field() }}
-
-                    <!-- Task Name -->
                         <div class="form-group">
-                            <label for="task-name" class="col-sm-2 control-label">Название категории:</label>
+                            <label for="name" class="col-sm-2 control-label">Имя пользователя:</label>
                             <div class="col-sm-8">
-                                <input type="text" name="name" id="task-name" class="form-control" value="{{ old('categories') }}">
+                                <input type="text" name="name" id="name" class="form-control" required>
                             </div>
                         </div>
-
-                        <!-- Add Task Button -->
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">Email:</label>
+                            <div class="col-sm-8">
+                                <input type="email" name="email" id="email" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label">Пароль</label>
+                            <div class="col-sm-8">
+                                <input type="password" name="password" id="password" class="form-control" required>
+                            </div>
+                            </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-8">
                                 <button type="submit" class="btn btn-default">
@@ -36,40 +40,42 @@
             </div>
 
             <!-- Current Tasks -->
-            @if (count($categories) > 0)
+            @if (count($users) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Все категории
+                        Все пользователи
                     </div>
 
                     <div class="panel-body">
                         <table class="table table-striped task-table">
                             <thead>
-                            <th>Категория:</th>
+                            <th>Пользователи:</th>
+                            <th>Email:</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                             </thead>
                             <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($users as $user)
                                 <tr>
-                                    <form action="{{ url('admin/categories/'.$category->id) }}" method="POST">
+                                    <form action="{{ url('admin/users/'.$user->id) }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
-                                    <td class="table-text"><div>
-                                            <input type="text" name="name" value="{{ $category->name }}">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-danger">
+                                        <td class="table-text"><div>
+                                                <input type="text" name="name" value="{{ $user->name }}">
+                                            </div></td>
+                                        <td class="table-text"><div>
+                                                <input type="text" name="email" value="{{ $user->email }}">
+                                            </div></td>
+                                        <td>
+                                            <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash"></i>Изменить
                                             </button>
-                                    </td>
+                                        </td>
                                     </form>
                                     <td>
-                                        <form action="{{ url('admin/categories/'.$category->id) }}" method="POST">
+                                        <form action="{{ url('admin/users/'.$user->id) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash"></i>Удалить
                                             </button>

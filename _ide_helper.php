@@ -1368,7 +1368,7 @@ namespace {
         public static function user(){
             return \Illuminate\Auth\SessionGuard::user();
         }
-        
+
         /**
          * Get the ID for the currently authenticated user.
          *

@@ -1,15 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
 Auth::routes();
 
 Route::get('home', 'HomeController@index');
@@ -30,18 +20,36 @@ Route::post('basket/update', 'OrdersController@updateBasket');
 Route::post('orders/goods/{id}', 'OrdersController@successfulAdd');
 
 Route::group(['prefix' => 'admin'], function (){
-    Route::get('login', 'AdminAuthController@index');
-    Route::get('products', 'AdminProductsController@index');
-    Route::get('categories', 'AdminCategoriesController@index');
-    Route::get('pages', 'AdminPagesController@index');
-    Route::get('main', 'AdminMainController@index');
+    Route::get('log', 'Admin\LoginController@index');
+    Route::post('log', 'Admin\LoginController@login');
+
+    Route::get('goods', 'Admin\AdminProductsController@index');
+    Route::post('goods', 'Admin\AdminProductsController@create');
+    Route::put('goods/{id}', 'Admin\AdminProductsController@update');
+    Route::delete('goods/{id}', 'Admin\AdminProductsController@destroy');
+
+    Route::get('categories', 'Admin\AdminCategoriesController@index');
+    Route::put('categories/{id}', 'Admin\AdminCategoriesController@update');
+    Route::post('categories', 'Admin\AdminCategoriesController@create');
+    Route::delete('categories/{id}', 'Admin\AdminCategoriesController@destroy');
+
+    Route::get('pages', 'Admin\AdminPagesController@index');
+
+    Route::get('orders', 'Admin\AdminOrdersController@index');
+
+    Route::get('users', 'Admin\AdminUsersController@index');
+    Route::post('users', 'Admin\AdminUsersController@create');
+    Route::put('users/{id}', 'Admin\AdminUsersController@update');
+    Route::delete('users/{id}', 'Admin\AdminUsersController@destroy');
+
 });
 
-Route::group(['prefix' => 'api.v1'], function(){
-    Route::get('products', 'ApiController@products');
-    Route::get('products/category/{id}', 'ApiController@productCategoryId');
-    Route::get('products/{id}', 'ApiController@productId');
+Route::group(['prefix' => 'api.v1', 'middleware' => 'auth:api'], function(){
+    Route::post('/short', 'UrlMapperController@store');
+    Route::get('categories', 'ApiController@categories');
+    Route::get('categories/goods/{id}', 'ApiController@getGoodId');
+    Route::get('categories/{id}', 'ApiController@categoryGoods');
     Route::get('users', 'ApiController@showUsers');
     Route::post('orders', 'ApiController@createOrders');
-    Route::delete('orders/{id}', 'ApiController@deleteOrderId');
+    Route::delete('orders/{id}', 'ApiController@destroyOrders');
 });
