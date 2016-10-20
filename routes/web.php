@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::post('goods', 'Admin\AdminProductsController@create');
     Route::put('goods/{id}', 'Admin\AdminProductsController@update');
     Route::delete('goods/{id}', 'Admin\AdminProductsController@destroy');
+
     Route::get('main', function(){
         return view('admin/main');
     });
