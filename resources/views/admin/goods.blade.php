@@ -7,42 +7,77 @@
                     Добавить товар:
                 </div>
                 <div class="panel-body">
-                @include('admin.errors')
+                    {{--@include('admin.errors')--}}
                     <form action="{{ url('admin/goods')}}" method="POST" class="form-horizontal">
-                    {{ csrf_field() }}
-                        <div class="form-group">
+                        {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-sm-2 control-label">Название:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="name" id="name" class="form-control" required>
+                                <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control" required>
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
                             <label for="price" class="col-sm-2 control-label">Цена:</label>
                             <div class="col-sm-10">
-                                <input type="number" name="price" id="price" class="form-control" required>
+                                <input type="number" name="price" value="{{ old('price') }}" id="price" class="form-control" required>
+                                @if ($errors->has('price'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('price') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                             <label for="image" class="col-sm-2 control-label">Ссылка на изображение:</label>
                             <div class="col-sm-10">
-                                <input type="url" name="image" id="image" class="form-control" required>
+                                <input type="url" name="image" value="{{ old('image') }}" id="image" class="form-control" required>
+                                @if ($errors->has('image'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('image') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                             <label for="description" class="col-sm-2 control-label">Описание:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="description" id="description" class="form-control" required>
+                                <input type="text" name="description" value="{{ old('description') }}" id="description" class="form-control" required>
+                                @if ($errors->has('description'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('article') ? ' has-error' : '' }}">
+                            <label for="article" class="col-sm-2 control-label">Код товара:</label>
+                            <div class="col-sm-10">
+                                <input type="number" name="article" value="{{ old('article') }}" id="article" class="form-control" required>
+                                @if ($errors->has('article'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('article') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="article" class="col-sm-2 control-label">Код товара:</label>
+                            <label for="categories_id" class="col-sm-2 control-label">Категория:</label>
                             <div class="col-sm-10">
-                                <input type="number" name="article" id="article" class="form-control" required>
+                                <select name="categories_id" value="{{ old('categories_id') }}" id="categories_id" class="form-control">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">
+                                <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-plus"></i>Добавить
                                 </button>
                             </div>
@@ -64,6 +99,7 @@
                             <th>Товар:</th>
                             <th>Цена:</th>
                             <th>Ссылка на изображение:</th>
+                            <th>Категория:</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                             </thead>
@@ -82,8 +118,16 @@
                                         <td class="table-text"><div>
                                                 <input type="url" name="image" value="{{ $good->image }}">
                                             </div></td>
+                                        <td class="table-text"><div>
+                                                <select name="categories_id" id="categories_id" class="form-control">
+                                                    @foreach($categories as $category)
+                                                        <option value="{{ $category->id }}"
+                                                                @if($category->id == $good->categories_id) selected @endif>{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div></td>
                                         <td>
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="submit" class="btn btn-success">
                                                 <i class="fa fa-btn fa-trash"></i>Изменить
                                             </button></td>
                                     </form>
@@ -92,7 +136,6 @@
                                         <form action="{{ url('admin/goods/'.$good->id) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash"></i>Удалить
                                             </button>

@@ -26,8 +26,8 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required'
+            'name' => 'required|unique:users,name|max:255',
+            'email' => 'required|email|max:255|unique:users,email'
         ]);
 
         \DB::table('users')->where('id', $id)->update([
@@ -35,24 +35,23 @@ class AdminUsersController extends Controller
             'email' => $request->email
         ]);
 
-        return redirect('/admin/users');
-
+        return redirect('/admin/main');
     }
 
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required',
-            'password' => 'required'
+            'name' => 'required|unique:users,name|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:6'
         ]);
 
         \DB::table('users')->insertGetId([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
+            'api_token' => str_random(60),
+            'password' => bcrypt($request->password),
         ]);
-
 
         return redirect('/admin/users');
     }

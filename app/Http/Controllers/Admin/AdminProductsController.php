@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Categories;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -17,19 +18,20 @@ class AdminProductsController extends Controller
 
     public function index()
     {
+        $categories = Categories::category();
         $goods = Goods::all();
-        return view('admin.goods', ['goods' => $goods]);
+        return view('admin.goods', ['goods' => $goods, 'categories' => $categories]);
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'price' => 'required',
-            'image' => 'required',
-//            'categories_id' => 'required'
+            'name' => 'required|unique:goods,name|max:255',
+            'price' => 'required|min:3|max:7',
+            'image' => 'required|url',
 //            'description' => 'required',
-//            'article' => 'required',
+//            'article' => 'required|min:8|max:14',
+            'categories_id' => 'required'
         ]);
 
         \DB::table('goods')->where('id', $id)->update([
@@ -38,8 +40,7 @@ class AdminProductsController extends Controller
             'image' => $request->image,
 //            'description' => $request->description,
 //            'article' => $request->article,
-//            'categories_id' => $request->categories_id
-
+            'categories_id' => $request->categories_id
         ]);
 
         return redirect('/admin/goods');
@@ -49,12 +50,12 @@ class AdminProductsController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'price' => 'required',
-            'image' => 'required',
+            'name' => 'required|unique:goods,name|max:255',
+            'price' => 'required|min:3|max:7',
+            'image' => 'required|url',
             'description' => 'required',
-            'article' => 'required',
-//            'categories_id' => 'required'
+            'article' => 'required|min:8|max:14',
+            'categories_id' => 'required'
 
         ]);
 
@@ -64,10 +65,8 @@ class AdminProductsController extends Controller
             'image' => $request->image,
             'description' => $request->description,
             'article' => $request->article,
-//            'categories_id' => $request->categories_id
-
+            'categories_id' => $request->categories_id
         ]);
-
 
         return redirect('/admin/goods');
     }

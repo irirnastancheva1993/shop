@@ -28,17 +28,15 @@ class LoginController extends Controller
         $this->validate($request, [
             'name' => 'required', 'password' => 'required',
         ]);
-            //var_dump($request['name'], $request['password']); die;
-        if (\Auth::guard('admin')->attempt(['name'=>$request['name'],'password'=>$request['password']]))
+
+        if (\Auth::attempt(['name'=>$request['name'],'password'=>$request['password'], 'is_admin'=>1]))
         {
             $request->session()->put('admin', $request['name']);
-            return redirect('admin/layouts');
+            return redirect('admin/users');
         }
 
-            //return redirect()->route('add');
         return redirect()->back();
 
     }
 
 }
-

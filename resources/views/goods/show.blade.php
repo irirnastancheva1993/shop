@@ -23,7 +23,7 @@
                             {{ $row->article }}
                         </p>
                         <hr>
-                    @endforeach
+                        @endforeach
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="count">Количество:</label>
                             <div class="col-xs-2" id="count">
@@ -35,8 +35,8 @@
                                 </select>
                             </div>
                         </div>
-                            <p class="add-re"><input type="submit" class="btn btn-primary" value="Добавить в корзину" >
-                            </p>
+                        <p class="add-re"><input type="submit" class="btn btn-primary" value="Добавить в корзину" @if(Auth::guest()) title="Вы должны зарегистрироваться или войти в свой аккаунт" disabled @endif>
+                        </p>
                     </form>
                 </div>
             </div>
@@ -58,13 +58,13 @@
                         {{ csrf_field() }}
                         @if(Auth::guest())
                             <p>Введите ваше имя:</p>
-                            <p><input type="text" class="form-control" name="user_name">
-                        @else <input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
-                            @endif
-                        <input type="hidden" name="goods_id" value="{{ $id }}">
-                        <p><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Введите ваш комментарий:
-                        <p><textarea  class="form-control" name="text"></textarea></p>
-                        <p class="add-re"><input type="submit" class="btn btn-primary" value="Добавить комментарий"></p>
+                            <p><input type="text" class="form-control" name="user_name" required>
+                                @else <input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
+                                @endif
+                                <input type="hidden" name="goods_id" value="{{ $id }}">
+                            <p><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Введите ваш комментарий:
+                            <p><textarea  class="form-control" name="text" required></textarea></p>
+                            <p class="add-re"><input type="submit" class="btn btn-primary" value="Добавить комментарий" ></p>
                     </form>
                 </div>
             </div>

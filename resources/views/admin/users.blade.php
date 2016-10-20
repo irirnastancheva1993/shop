@@ -7,30 +7,45 @@
                     Добавить нового пользователя:
                 </div>
                 <div class="panel-body">
-                @include('admin.errors')
+                    {{--@include('admin.errors')--}}
                     <form action="{{ url('admin/users')}}" method="POST" class="form-horizontal">
-                    {{ csrf_field() }}
-                        <div class="form-group">
+                        {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-sm-2 control-label">Имя пользователя:</label>
                             <div class="col-sm-8">
                                 <input type="text" name="name" id="name" class="form-control" required>
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-sm-2 control-label">Email:</label>
                             <div class="col-sm-8">
                                 <input type="email" name="email" id="email" class="form-control" required>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-sm-2 control-label">Пароль</label>
                             <div class="col-sm-8">
                                 <input type="password" name="password" id="password" class="form-control" required>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-8">
-                                <button type="submit" class="btn btn-default">
+                                <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-plus"></i>Добавить
                                 </button>
                             </div>
@@ -67,7 +82,7 @@
                                                 <input type="text" name="email" value="{{ $user->email }}">
                                             </div></td>
                                         <td>
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="submit" class="btn btn-success">
                                                 <i class="fa fa-btn fa-trash"></i>Изменить
                                             </button>
                                         </td>

@@ -15,6 +15,10 @@ class AdminCategoriesController extends Controller
     public function __construct()
     {
 //        $this->middleware('auth');
+//        var_dump(session()->has('admin')); die;
+//        if (!empty(session()->has('admin'))){
+//            return redirect('/admin/log');
+//        }
     }
 
     public function index()
@@ -26,7 +30,7 @@ class AdminCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|unique:categories,name|max:255',
         ]);
 
         \DB::table('categories')->where('id', $id)->update([
@@ -40,14 +44,12 @@ class AdminCategoriesController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|unique:categories,name|max:255',
         ]);
 
         \DB::table('categories')->insertGetId([
             'name' => $request->name,
         ]);
-
-
         return redirect('/admin/categories');
     }
 
@@ -56,7 +58,6 @@ class AdminCategoriesController extends Controller
 //        $this->authorize('destroy', $categories);
 
         \DB::table('categories')->where('id', $id)->delete();
-
         return redirect('/admin/categories');
     }
 }

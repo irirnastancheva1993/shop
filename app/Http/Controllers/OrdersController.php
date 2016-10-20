@@ -24,7 +24,9 @@ class OrdersController extends Controller
 
     public function successfulAdd($id, Request $request)
     {
-
+        if(Auth::guest()){
+            return redirect('auth/login');
+        }
 //        var_dump(Cookie::get('goods_basket')); die;
 
         if(!Cookie::get('goods_basket')) {
@@ -66,11 +68,12 @@ class OrdersController extends Controller
 
     public function updateBasket(Request $request)
     {
+        $good_id = $request -> good_id;
+        $count = $request -> count;
+        $final_price = 0;
+
         if(isset($request -> add))
         {
-            $good_id = $request -> good_id;
-            $count = $request -> count;
-            $final_price = 0;
 
             $user = \Auth::user()->id;
             $order_id = \DB::table('orders')->insertGetId([
@@ -92,10 +95,21 @@ class OrdersController extends Controller
                 $final_price += $price_good;
             }
 
-            \DB::table('orders')->where('id', $order_id)->update(['price' => $final_price]);
+            if($final_price!=0){
+                \DB::table('orders')->where('id', $order_id)->update(['price' => $final_price]);
+                $message = 'Заказ № ' . $order_id . ', успешно отправлен!';
+            } else {
+                $message = 'Вы ничего не заказали';
+            }
+            \Cookie::queue(\Cookie::forget('goods_basket'));
+            return back()->with('message', 'Заказ № ' . $order_id . ', успешно отправлен!');
 
-//            Cookie::forget('goods_basket');
-
+        } else if (isset($request -> update)){
+            for($i = 0; $i < count($request->good_id); $i++) {
+                $update_cookie[] = ['goods_id' =>  $good_id[$i], 'count' => $count[$i]];
+            }
+//            var_dump($update_cookie); die;
+            Cookie::queue('goods_basket', json_encode($update_cookie), 360);
             return back();
         }
 
