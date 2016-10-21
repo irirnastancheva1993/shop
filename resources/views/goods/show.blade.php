@@ -38,6 +38,9 @@
                         <p class="add-re"><input type="submit" class="btn btn-primary" value="Добавить в корзину" @if(Auth::guest()) title="Вы должны зарегистрироваться или войти в свой аккаунт" disabled @endif>
                         </p>
                     </form>
+                    @if(Auth::guest())
+                        <h5 align="right" style="color:steelblue">@ Прежде чем добавить товар в корзину, вы должны зарегистрироваться или войти в свой аккаунт!</h5>
+                    @endif
                 </div>
             </div>
             <div class="panel panel-default">
