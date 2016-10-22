@@ -78,7 +78,8 @@
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-plus"></i>Добавить
+                                    <i class="fa fa-btn fa-plus"></i>
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Добавить
                                 </button>
                             </div>
                         </div>
@@ -100,8 +101,8 @@
                             <th>Цена:</th>
                             <th>Ссылка на изображение:</th>
                             <th>Категория:</th>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
+                            <th>Обновить</th>
+                            <th>Удалить</th>
                             </thead>
                             <tbody>
                             @foreach ($goods as $good)
@@ -128,7 +129,8 @@
                                             </div></td>
                                         <td>
                                             <button type="submit" class="btn btn-success">
-                                                <i class="fa fa-btn fa-trash"></i>Изменить
+                                                <i class="fa fa-btn fa-trash"></i>
+                                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                                             </button></td>
                                     </form>
 
@@ -136,8 +138,10 @@
                                         <form action="{{ url('admin/goods/'.$good->id) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash"></i>Удалить
+                                            <button type="submit" class="btn btn-danger"  onclick=" return confirmDelete();">
+
+                                                <i class="fa fa-btn fa-trash"></i>
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                             </button>
                                         </form>
                                     </td>

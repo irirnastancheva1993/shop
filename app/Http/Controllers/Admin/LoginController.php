@@ -32,7 +32,7 @@ class LoginController extends Controller
         if (\Auth::attempt(['name'=>$request['name'],'password'=>$request['password'], 'is_admin'=>1]))
         {
             $request->session()->put('admin', $request['name']);
-            return redirect('admin/users');
+            return redirect('admin/main');
         }
 
         return redirect()->back();

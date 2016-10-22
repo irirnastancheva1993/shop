@@ -32,7 +32,8 @@
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-8">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-plus"></i>Добавить
+                                    <i class="fa fa-btn fa-plus"></i>
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Добавить
                                 </button>
                             </div>
                         </div>
@@ -51,8 +52,8 @@
                         <table class="table table-striped task-table">
                             <thead>
                             <th>Категория:</th>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
+                            <th>Обновить</th>
+                            <th>Удалить</th>
                             </thead>
                             <tbody>
                             @foreach ($categories as $category)
@@ -60,13 +61,23 @@
                                     <form action="{{ url('admin/categories/'.$category->id) }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
-                                        <td class="table-text"><div>
-                                                <input type="text" name="name" value="{{ $category->name }}">
+                                        <td class="table-text">
+
+                                            <div class="form-group{{ $errors->has('name'.$category->id) ? ' has-error' : '' }}">
+                                                @if ($errors->has('name'.$category->id))
+                                                    <input type="text" name="name{{$category->id}}" class="form-control" value="{{ old('name'.$category->id) }}">
+                                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name'.$category->id) }}</strong>
+                                    </span>
+                                                @else
+                                                    <input type="text" name="name{{ $category->id }}" class="form-control" value="{{ $category->name }}">
+                                                @endif
                                             </div>
                                         </td>
                                         <td>
                                             <button type="submit" class="btn btn-success">
-                                                <i class="fa fa-btn fa-trash"></i>Изменить
+                                                <i class="fa fa-btn fa-trash"></i>
+                                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                                             </button>
                                         </td>
                                     </form>
@@ -75,8 +86,9 @@
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
 
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash"></i>Удалить
+                                            <button type="submit" class="btn btn-danger" onclick="return confirmDelete();">
+                                                <i class="fa fa-btn fa-trash"></i>
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                             </button>
                                         </form>
                                     </td>
@@ -84,6 +96,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <div align="center">
+                            {{ $categories->render() }}
+                        </div>
                     </div>
                 </div>
             @endif

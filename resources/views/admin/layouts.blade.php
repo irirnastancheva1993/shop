@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="http://localhost/shop/public/css/app.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="http://localhost/shop/public/css/style.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -49,7 +49,7 @@
 </div>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="http://localhost/shop/public/js/confirm_delete.js"></script>
 <script src="http://localhost/shop/public/js/app.js"></script>
 <div class="footer" >
     <div class="container">

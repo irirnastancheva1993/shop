@@ -27,12 +27,14 @@ class AdminUsersController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:users,name|max:255',
-            'email' => 'required|email|max:255|unique:users,email'
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:6'
         ]);
 
         \DB::table('users')->where('id', $id)->update([
             'name' => $request->name,
-            'email' => $request->email
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
         ]);
 
         return redirect('/admin/main');

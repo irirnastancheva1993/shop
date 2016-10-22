@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Policies\CategoriesPolicy;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 use App\Http\Requests;
 
@@ -23,18 +24,19 @@ class AdminCategoriesController extends Controller
 
     public function index()
     {
-        $categories = Categories::all();
+        $categories = \DB::table('categories')->paginate(5);
+//        $categories = Categories::all()->paginate(3);
         return view('admin.categories', ['categories' => $categories]);
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|unique:categories,name|max:255',
+            'name'.$id => 'required|unique:categories,name|max:255',
         ]);
-
+        $name = 'name'.$id ;
         \DB::table('categories')->where('id', $id)->update([
-            'name' => $request->name,
+            'name' => $request->$name,
         ]);
 
         return redirect('/admin/categories');

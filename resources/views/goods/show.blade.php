@@ -25,14 +25,14 @@
                         <hr>
                         @endforeach
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="count">Количество:</label>
+                            <label class="control-label col-sm-2" for="count" {{ $errors->has('count') ? ' has-error' : '' }}>Количество:</label>
                             <div class="col-xs-2" id="count">
-                                <select class="form-control" name="count">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
+                                <input type="number" class="form-control" name="count" min="1" max="100" required>
+                                @if ($errors->has('count'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('count') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <p class="add-re"><input type="submit" class="btn btn-primary" value="Добавить в корзину" @if(Auth::guest()) title="Вы должны зарегистрироваться или войти в свой аккаунт" disabled @endif>

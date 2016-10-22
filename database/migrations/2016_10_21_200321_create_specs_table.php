@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCountToGoodsTable extends Migration
+class CreateSpecsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddCountToGoodsTable extends Migration
      */
     public function up()
     {
-        Schema::table('goods', function ($table) {
-            $table->integer('count');
+        Schema::create('specs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
         });
     }
 
@@ -25,6 +26,6 @@ class AddCountToGoodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumn('count');
+        Schema::drop('specs');
     }
 }
