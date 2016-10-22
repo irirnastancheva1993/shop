@@ -12,9 +12,11 @@
     <link href="http://localhost/shop/public/css/style.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-inverse navbar-static-top">
+
     <div class="container">
         <div class="navbar-header">
+            <a class="navbar-brand" href="/shop/public/admin/main">Admin panel</a>
             <ul class="nav navbar-nav">
                 <li><a href="/shop/public/admin/users">Пользователи</a></li>
                 <li><a href="/shop/public/admin/categories">Категории</a></li>
@@ -44,8 +46,24 @@
         </div>
     </div>
 </nav>
-<div class="container">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            <ul class="nav nav-sidebar">
+                <li ><a href="/shop/public/admin/users/add">Добавить пользователя</a></li>
+                <li ><a href="/shop/public/admin/catgory/add">Добавить категорию</a></li>
+                <li ><a href="/shop/public/admin/goods/add">Добавить товар</a></li>
+                <li ><a href="/shop/public/admin/orders/add">Добавить заказ</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-10">
+            {{----}}
+{{--<div class="container">--}}
     @yield('content')
+{{--</div>--}}
+</div>
+</div>
 </div>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

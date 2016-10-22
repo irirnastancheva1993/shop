@@ -46,7 +46,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::get('orders', 'Admin\AdminOrdersController@index');
 
     Route::get('users', 'Admin\AdminUsersController@index');
-    Route::post('users', 'Admin\AdminUsersController@create');
+    Route::get('users/add', function (){
+        return view('admin/users_add');
+    });
+    Route::post('users/add', 'Admin\AdminUsersController@create');
     Route::put('users/{id}', 'Admin\AdminUsersController@update');
     Route::delete('users/{id}', 'Admin\AdminUsersController@destroy');
 });

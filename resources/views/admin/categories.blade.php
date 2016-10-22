@@ -62,7 +62,6 @@
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
                                         <td class="table-text">
-
                                             <div class="form-group{{ $errors->has('name'.$category->id) ? ' has-error' : '' }}">
                                                 @if ($errors->has('name'.$category->id))
                                                     <input type="text" name="name{{$category->id}}" class="form-control" value="{{ old('name'.$category->id) }}">
