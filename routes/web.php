@@ -28,7 +28,8 @@ Route::post('admin/log', 'Admin\LoginController@login');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::get('goods', 'Admin\AdminProductsController@index');
-    Route::post('goods', 'Admin\AdminProductsController@create');
+    Route::get('goods/add', 'Admin\AdminProductsController@index_add');
+    Route::post('goods/add', 'Admin\AdminProductsController@create');
     Route::put('goods/{id}', 'Admin\AdminProductsController@update');
     Route::delete('goods/{id}', 'Admin\AdminProductsController@destroy');
 
@@ -37,8 +38,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     });
 
     Route::get('categories', 'Admin\AdminCategoriesController@index');
+    Route::get('categories/add', function (){
+        return view('admin/category_add');
+    });
     Route::put('categories/{id}', 'Admin\AdminCategoriesController@update');
-    Route::post('categories', 'Admin\AdminCategoriesController@create');
+    Route::post('categories/add', 'Admin\AdminCategoriesController@create');
     Route::delete('categories/{id}', 'Admin\AdminCategoriesController@destroy');
 
     Route::get('pages', 'Admin\AdminPagesController@index');

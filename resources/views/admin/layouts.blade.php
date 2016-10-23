@@ -52,7 +52,7 @@
         <div class="col-sm-2">
             <ul class="nav nav-sidebar">
                 <li ><a href="/shop/public/admin/users/add">Добавить пользователя</a></li>
-                <li ><a href="/shop/public/admin/catgory/add">Добавить категорию</a></li>
+                <li ><a href="/shop/public/admin/categories/add">Добавить категорию</a></li>
                 <li ><a href="/shop/public/admin/goods/add">Добавить товар</a></li>
                 <li ><a href="/shop/public/admin/orders/add">Добавить заказ</a></li>
             </ul>

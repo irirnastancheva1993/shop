@@ -27,7 +27,6 @@ class AdminUsersController extends Controller
     {
         $user = User::where('id', $id)->get();
 
-
         $name = 'name'.$id;
         $email = 'email'.$id;
         $password = 'password'.$id;
@@ -62,7 +61,7 @@ class AdminUsersController extends Controller
             'password' => bcrypt($request->$password),
         ]);
 
-        return redirect('/admin/users');
+        return back();
     }
 
     public function create(Request $request)
@@ -88,6 +87,6 @@ class AdminUsersController extends Controller
 
         \DB::table('users')->where('id', $id)->delete();
 
-        return redirect('/admin/users');
+        return back();
     }
 }

@@ -39,7 +39,7 @@ class AdminCategoriesController extends Controller
             'name' => $request->$name,
         ]);
 
-        return redirect('/admin/categories');
+        return back();
 
     }
 
@@ -52,7 +52,7 @@ class AdminCategoriesController extends Controller
         \DB::table('categories')->insertGetId([
             'name' => $request->name,
         ]);
-        return redirect('/admin/categories');
+        return redirect('/admin/categories')->with('message_create_category', 'Категория успешно добавлена!');
     }
 
     public function destroy($id)
@@ -60,6 +60,6 @@ class AdminCategoriesController extends Controller
 //        $this->authorize('destroy', $categories);
 
         \DB::table('categories')->where('id', $id)->delete();
-        return redirect('/admin/categories');
+        return back();
     }
 }
