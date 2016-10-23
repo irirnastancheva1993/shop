@@ -69,6 +69,9 @@ class OrdersController extends Controller
     public function updateBasket(Request $request)
     {
         $good_id = $request -> good_id;
+        $this->validate($request, [
+            'count' => 'required|between:1,50',
+        ]);
         $count = $request -> count;
         $final_price = 0;
 

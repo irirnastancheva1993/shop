@@ -10,8 +10,8 @@
                 <div class="row">
                     @foreach($goods as $good)
                         <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail" height="300">
-                                <img src="{{ $good->image }}" width="236" height="191">
+                            <div class="thumbnail" style="height:350px;">
+                                <img src="{{ $good->image }}" style="width:236px; height:191px;" >
                                 <div class="caption">
                                     <h4>{{ $good->name }}</h4>
                                     <h5>{{ $good->price }}грн</h5>
@@ -20,6 +20,9 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
+                <div align="center">
+                    {{ $goods->render() }}
                 </div>
             </div>
         </div>

@@ -62,6 +62,7 @@
                         @if(Auth::guest())
                             <p>Введите ваше имя:</p>
                             <p><input type="text" class="form-control" name="user_name" required>
+                            {{--<div class="g-recaptcha" data-sitekey=""></div>--}}
                                 @else <input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
                                 @endif
                                 <input type="hidden" name="goods_id" value="{{ $id }}">

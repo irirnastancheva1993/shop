@@ -35,7 +35,7 @@ class LoginController extends Controller
             return redirect('admin/main');
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('admin_message', 'У вас нет доступа в панель управления администратора');
 
     }
 

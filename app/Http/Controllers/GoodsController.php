@@ -6,7 +6,8 @@ use App\Comment;
 use App\Goods;
 use App\Categories;
 use Illuminate\Http\Request;
-
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\PaginationServiceProvider;
 use App\Http\Requests;
 
 class GoodsController extends Controller
@@ -31,7 +32,13 @@ class GoodsController extends Controller
     public function categoryAction($id){
         $categories = Categories::category();
         $category = Categories::find($id);
-        $goods = Categories::find($id)->goods;
+
+//        $users = \DB::table('users')->paginate(5);
+        $goods = \DB::table('goods')->where('categories_id', $id)->paginate(3);
+//        $goods = Categories::find($id)->goods;
+
+//        $goods_paginate = $goods;
+
         return view('goods.index', ['goods' => $goods, 'categories' => $categories, 'category' => $category]);
     }
 

@@ -29,4 +29,13 @@ class HomeController extends Controller
         return view ('welcome');
     }
 
+    public function search(Request $request)
+    {
+        // Строим запрос
+        $goods = \DB::table('goods')->where('name', 'like', '%' . $request->search . '%')->get();
+        // Получаем результаты
+//        var_dump($goods); die;
+        return view('search', ['goods' => $goods]);
+    }
+
 }

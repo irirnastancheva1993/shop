@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
         <div class="col-md-10 col-md-offset-1">
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -25,14 +24,32 @@
                                 <td>{{ $value['name'] }}</td>
                                 <td>
                                     <select class="form-control" name="count[]">
-                                        @for($i = 0; $i <= 4; $i++)
+                                        @for($i = 0; $i <= 50; $i++)
                                             <option value="{{$i}}" @if($value['count'] == $i) selected @endif>{{ $i }}</option>
                                         @endfor
                                     </select>
+
+                                    {{--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">--}}
+                                        {{--<label for="count" class="col-sm-2 control-label">Название категории:</label>--}}
+                                        {{--<div class="col-sm-8">--}}
+                                            {{--<input type="text" name="count[]" id="name" class="form-control" value="{{ old($value[count]) }}">--}}
+                                            {{--@if ($errors->has('name'))--}}
+                                                {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('count') }}</strong>--}}
+                                    {{--</span>--}}
+                                            {{--@endif--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+
+
+                                    {{--<input type="number" class="form-control" name="count[]" value="" required>--}}
                                 </td>
                             </tr>
                         @endforeach
                     </table>
+                    <p class="add-re" align="right">
+                        <input type="submit" class="btn btn-default" name="update" value="Пересчитать" >
+                    </p>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="city" >Город:</label>
                         <div class="col-sm-10">
@@ -67,16 +84,7 @@
                             </p>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <p class="add-re"><input type="submit" class="btn btn-primary" name="update" value="Обновить" >
-                            </p>
-                        </div>
-                    </div>
                 </form>
             @endif
         </div>
-    </div>
-
 @endsection

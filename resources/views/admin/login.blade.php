@@ -20,7 +20,7 @@
                 <div class="panel-heading" align="center" style="color:blue"><strong>Admin Panel Login!</strong></div>
                 <div class="panel-body">
                     @if (Session::has('admin_message'))
-                        <div class="alert alert-info">{{ Session::get('admin_message') }}</div>
+                        <div class="alert alert-danger">{{ Session::get('admin_message') }}</div>
                     @endif
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/log') }}">
                         {{ csrf_field() }}

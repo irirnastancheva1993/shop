@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <link href="http://localhost/shop/public/css/app.css" rel="stylesheet">
     <link href="http://localhost/shop/public/css/style.css" rel="stylesheet">
     {{--<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">--}}
@@ -44,11 +45,10 @@
                 </li>
                 <li><a href="/shop/public/aboutus">О нас</a></li>
             </ul>
-        </div>
+            </div>
+
+
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <ul class="nav navbar-nav">
-                &nbsp;
-            </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Вход</a></li>
@@ -74,8 +74,40 @@
                     </li>
                 @endif
             </ul>
-        </div>
-    </div>
+
+            {{--<form class="navbar-search" method="POST" action="http://localhost/shop/public/search">--}}
+            {{--{{ csrf_field() }}--}}
+            {{--<div class="form-group">--}}
+            {{--<input type="text" name="search" id="search_box" class="search-query" placeholder="Search" required/>--}}
+            {{--<button type="submit" class="btn btn-default" id="search-button">--}}
+            {{--<i class="fa fa-btn fa-plus"></i>Поиск--}}
+            {{--</button>--}}
+            {{--</div>--}}
+            {{--</form>--}}
+            {{--<div id="searchresults">Результаты для <span class="word"></span></div>--}}
+            {{--<ul id="results" class="update">--}}
+            {{--</ul>--}}
+
+            <form class="navbar-form" method="POST" action="{{ url('/search')}}">
+                {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" class="form-control pull-right" name="search" placeholder="Search" required>
+                    <span class="input-group-btn">
+							{{--<button type="reset" class="btn btn-default">--}}
+								{{--<span class="glyphicon glyphicon-remove">--}}
+									{{--<span class="sr-only">Close</span>--}}
+								{{--</span>--}}
+							{{--</button>--}}
+							<button type="submit" class="btn btn-default">
+								<span class="glyphicon glyphicon-search"  aria-hidden="true">
+									<span class="sr-only"><i class="fa fa-btn fa-plus"></i>Search</span>
+								</span>
+							</button>
+						</span>
+                </div>
+            </form>
+            </div>
+        <div>
 </nav>
 <div class="container">
     @yield('content')
@@ -84,6 +116,38 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 {{--<script src="js/bootstrap.min.js"></script>--}}
 <script src="http://localhost/shop/public/js/app.js"></script>
+<script src="http://localhost/shop/public/js/search.js"></script>
+
+
+<script type="text/javascript">
+    $(function() {
+        $(".search_button").click(function() {
+            // получаем то, что написал пользователь
+            var searchString    = $("#search_box").val();
+            // формируем строку запроса
+            var data            = 'search='+ searchString;
+            // если searchString не пустая
+            if(searchString) {
+                // делаем ajax запрос
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/shop/public/search",
+                    data: data,
+                    beforeSend: function(html) { // запустится до вызова запроса
+                        $("#results").html('');
+                        $("#searchresults").show();
+                        $(".word").html(searchString);
+                    },
+                    success: function(html){ // запустится после получения результатов
+                        $("#results").show();
+                        $("#results").append(html);
+                    }
+                });
+            }
+            return false;
+        });
+    });
+</script>
 <div class="footer" >
     <div class="container">
             <p class="text-muted">Copyrights © 2016 City Cicle. All rights reserved | Design by Aria.</p>

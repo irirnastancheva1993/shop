@@ -18,6 +18,8 @@ Route::get('category/{id}', 'GoodsController@categoryAction');
 Route::get('category/goods/{id}', 'GoodsController@goodAction');
 Route::post('category/goods/{goods}/edit', 'CommentController@editAction');
 
+Route::post('search', 'HomeController@search');
+
 Route::get('basket', 'OrdersController@basketGoods');
 Route::post('basket/update', 'OrdersController@updateBasket');
 Route::post('orders/goods/{id}', 'OrdersController@successfulAdd');

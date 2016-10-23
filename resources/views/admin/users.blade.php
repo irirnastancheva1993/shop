@@ -51,12 +51,12 @@
                                     <td class="table-text">
                                         <div class="form-group{{ $errors->has('password'.$user->id) ? ' has-error' : '' }}">
                                             @if ($errors->has('password'.$user->id))
-                                                <input type="text" name="password{{$user->id}}" class="form-control" value="{{ old('password'.$user->id) }}">
+                                                <input type="text" name="password{{$user->id}}" class="form-control" value="">
                                                 <span class="help-block">
                                         <strong>{{ $errors->first('password'.$user->id) }}</strong>
                                     </span>
                                             @else
-                                                <input type="text" name="password{{ $user->id }}" class="form-control" value="{{ $user->password }}">
+                                                <input type="text" name="password{{ $user->id }}" class="form-control" value="">
                                             @endif
                                         </div>
                                     </td>
