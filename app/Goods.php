@@ -21,6 +21,11 @@ class Goods extends Model
         return $this->belongsToMany(Orders::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(Images::class);
+    }
+
     public function specs()
     {
         return $this->belongsToMany(Specs::class);

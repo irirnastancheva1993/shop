@@ -14,7 +14,21 @@
                         {{ csrf_field() }}
 
                         <h4>{{ $row->name }}</h4>
-                        <img src="{{ $row->image }}" class="img-rounded" alt="Cinque Terre" width="236" height="191">
+                        <div id="gallery">
+                            @foreach($images as $image)
+                                @if($image->goods_id == $row->id)
+                            <a href=""><img src="{{ $image->url }}" alt="Photo {{ $image->goods_id }}"  width="236" height="191" /></a>
+                                @endif
+                                @endforeach
+                        </div>
+                        <script type="text/javascript">
+                            $( function() {
+                                $( '#gallery' ).jGallery();
+                            } );
+                        </script>
+
+                        {{--<img src="{{ $row->image }}" class="img-rounded" alt="Cinque Terre" width="236" height="191">--}}
+
                         <h4>Цена за единицу товара:
                             {{ $row->price }}грн
                         </h4>

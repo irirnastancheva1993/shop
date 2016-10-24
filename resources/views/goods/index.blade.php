@@ -11,7 +11,13 @@
                     @foreach($goods as $good)
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail" style="height:350px;">
-                                <img src="{{ $good->image }}" style="width:236px; height:191px;" >
+                                @for($i = 0; $i < count($images); $i++)
+                                    {{--{{ var_dump($images[$i]['id'], $images[$i]['url'])}}--}}
+                                        @if($images[$i]['id'] == $good->id)
+                                    <img src="{{ $images[$i]['url'] }}" style="width:236px; height:191px;" >
+                                        @endif
+
+                                @endfor
                                 <div class="caption">
                                     <h4>{{ $good->name }}</h4>
                                     <h5>{{ $good->price }}грн</h5>
@@ -26,7 +32,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 

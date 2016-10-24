@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Goods;
 use App\Categories;
+use App\Images;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\PaginationServiceProvider;
@@ -26,20 +27,45 @@ class GoodsController extends Controller
         $category = Categories::find($category_id);
         $categories = Categories::category();
         $comments = Goods::find($id)->comments()->get();
-        return view('goods.show', ['id' => $id, 'good' => $good, 'categories' => $categories, 'category' => $category, 'comments' => $comments]);
+
+        //Выбирает все картинки относящиеся к определенному товару
+        $images = \DB::table('goods')
+            ->select('images.goods_id', 'images.url')
+            ->where('id', $id)
+            ->leftJoin('images', 'goods.id', '=', 'images.goods_id')
+            ->get();
+        return view('goods.show', ['id' => $id, 'good' => $good, 'images' => $images, 'categories' => $categories, 'category' => $category, 'comments' => $comments]);
     }
 
     public function categoryAction($id){
         $categories = Categories::category();
         $category = Categories::find($id);
-
-//        $users = \DB::table('users')->paginate(5);
         $goods = \DB::table('goods')->where('categories_id', $id)->paginate(3);
 //        $goods = Categories::find($id)->goods;
 
+
+        $images = [];
+        foreach ($goods as $good){
+            $url_image = \DB::table('images')->select('url')->where('goods_id', $good->id)->first();
+                $images[] = ['id' => $good->id, 'url' => $url_image->url];
+        }
+
+
+
+
+//        $images = Categories::find($id)->images;
+////        var_dump($images);die;
+//        foreach ($images as $image){
+//            var_dump($image->url);
+//            echo "<br>";
+//        }
+//        die;
+//        var_dump($images); die;
+
+
 //        $goods_paginate = $goods;
 
-        return view('goods.index', ['goods' => $goods, 'categories' => $categories, 'category' => $category]);
+        return view('goods.index', ['goods' => $goods, 'images' => $images, 'categories' => $categories, 'category' => $category]);
     }
 
     public function editAction(Comment $comment)
