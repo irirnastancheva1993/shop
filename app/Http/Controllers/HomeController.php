@@ -43,7 +43,13 @@ class HomeController extends Controller
         $images = [];
         foreach ($goods as $good){
             $url_image = \DB::table('images')->select('url')->where('goods_id', $good->id)->first();
-            $images[] = ['id' => $good->id, 'url' => $url_image->url];
+//            $j = \DB::table('images')->select('goods_id')->distinct()->get();
+//            var_dump($j); die;
+            $url = $url_image->url;
+//            var_dump($url_image->url); die;
+//            foreach ($url_image as $item)
+//            var_dump($good->id); die;
+            $images[] = ['id' => $good->id, 'url' => $url];
         }
         return view('main', ['goods' => $goods, 'images' => $images, 'brand' => $brand, 'diam' => $diam, 'count_v' => $count_v, 'm' => $m, 'material' => $material]);
     }

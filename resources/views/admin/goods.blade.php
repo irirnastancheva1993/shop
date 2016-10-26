@@ -56,7 +56,6 @@
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn btn-danger"  onclick=" return confirmDelete();">
-
                                                         <i class="fa fa-btn fa-trash"></i>
                                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                                     </button>
@@ -80,10 +79,17 @@
                                             @else
                                                 <input type="url" name="image{{ $good->id }}" class="form-control" value="{{ $good->image }}">
                                             @endif
-                                        </div>
 
+                                        </div>
                                     </div>
-                                   <img src="{{ $good->image }}" class="img-rounded" alt="Cinque Terre" width="236" height="191">
+                                   <img src="{{ $good->image }}" class="img-rounded" alt="Cinque Terre"  style="width:236px; height:191px;" >
+
+                                        <div class="col-md-offset-3">
+                                            <a href="http://localhost/shop/public/admin/goods/image/{{ $good->id }}" >
+                                                <input type="hidden" name="good_id" value="{{$good->id}}">
+                                                <button type="button" class="btn btn-default" >Добавить image</button>
+                                            </a>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-8">

@@ -29,9 +29,10 @@ class GoodsController extends Controller
         //Выбирает все картинки относящиеся к определенному товару
         $images = \DB::table('goods')
             ->select('images.goods_id', 'images.url')
-            ->where('id', $id)
+            ->where('goods.id', $id)
             ->leftJoin('images', 'goods.id', '=', 'images.goods_id')
             ->get();
+//        var_dump($images); die;
         return view('goods.show', ['id' => $id, 'good' => $good, 'images' => $images, 'categories' => $categories, 'category' => $category, 'comments' => $comments]);
     }
 

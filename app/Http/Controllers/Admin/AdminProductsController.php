@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Categories;
 use App\Http\Controllers\Controller;
 
+use App\Images;
 use Illuminate\Http\Request;
 use App\Goods;
 use App\Http\Requests;
@@ -129,8 +130,55 @@ class AdminProductsController extends Controller
         return back()->with('message_create_good', 'Товар успешно добавлен!');
     }
 
+    public function imageIndex($id)
+    {
+        $images = \DB::table('images')->select('goods_id', 'id', 'url')->where('goods_id', $id)->get();
+//        var_dump($images);die;
+        return view('admin.images', ['images' => $images]);
+    }
+
+    public function imageAdd($id, Request $request)
+    {
+//        var_dump($request->url, $id);die;
+        $this->validate($request, [
+            'url' => 'required|url|unique:images,url|',
+        ]);
+
+        \DB::table('images')->insertGetId([
+            'goods_id' => $id,
+            'url' => $request->url
+        ]);
+        return back()->with('message_create_image', 'Картинка к товару успешно добавлена!');
+    }
+
+    public function imageUpdate($id, Request $request)
+    {
+        $url = 'url'.$request->id;
+        var_dump($url); die;
+
+        $this->validate($request, [
+            'url'.$id => 'required|url',
+            ]);
+
+        \DB::table('images')->where('goods_id', $id)->update([
+            'url' => $request->$url
+        ]);
+
+        return back();
+    }
+
+    public function imageDelete($id)
+    {
+//        var_dump($id); die;
+        \DB::table('images')->where('id', $id)->delete();
+
+        return back();
+    }
+
+
     public function destroy($id)
     {
+        var_dump($id); die;
 //        $this->authorize('destroy', $categories);
 
         \DB::table('goods')->where('id', $id)->delete();

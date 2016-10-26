@@ -20,7 +20,7 @@
         </div>
         <div class="col-xs-6 col-sm-3 placeholder">
             <img src="http://localhost/shop/public/images/icon-orders.jpg" width="200" height="200" class="img-circle" alt="Generic placeholder thumbnail">
-            <h4><a href="/shop/public/admin/orders">Заказы</a></h4>
+            <h4><a href="#">Заказы</a></h4>
             <span class="text-muted">Something else</span>
         </div>
     </div>

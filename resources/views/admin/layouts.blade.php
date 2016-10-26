@@ -21,8 +21,8 @@
                 <li><a href="/shop/public/admin/users">Пользователи</a></li>
                 <li><a href="/shop/public/admin/categories">Категории</a></li>
                 <li><a href="/shop/public/admin/goods">Товары</a></li>
-                <li><a href="#">Страницы</a></li>
-                <li><a href="#">Заказы</a></li>
+                {{--<li><a href="#">Страницы</a></li>--}}
+                {{--<li><a href="#">Заказы</a></li>--}}
             </ul>
         </div>
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -54,7 +54,7 @@
                 <li ><a href="/shop/public/admin/users/add">Добавить пользователя</a></li>
                 <li ><a href="/shop/public/admin/categories/add">Добавить категорию</a></li>
                 <li ><a href="/shop/public/admin/goods/add">Добавить товар</a></li>
-                <li ><a href="/shop/public/admin/orders/add">Добавить заказ</a></li>
+                {{--<li ><a href="/shop/public/admin/orders/add">Добавить заказ</a></li>--}}
             </ul>
         </div>
         <div class="col-sm-10">

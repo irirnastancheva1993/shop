@@ -33,6 +33,10 @@ Route::post('admin/log', 'Admin\LoginController@login');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::get('goods', 'Admin\AdminProductsController@index');
+    Route::get('goods/image/{id}', 'Admin\AdminProductsController@imageIndex');
+    Route::post('goods/image/{id}', 'Admin\AdminProductsController@imageAdd');
+    Route::put('goods/image/{id}', 'Admin\AdminProductsController@imageUpdate');
+    Route::delete('goods/image/{id}', 'Admin\AdminProductsController@imageDelete');
     Route::get('goods/add', 'Admin\AdminProductsController@index_add');
     Route::post('goods/add', 'Admin\AdminProductsController@create');
     Route::put('goods/{id}', 'Admin\AdminProductsController@update');

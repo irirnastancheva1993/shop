@@ -22,10 +22,10 @@
                             <tr>
                                 <input type="hidden" name="good_id[]" value="{{ $value['good_id'] }}">
                                 <td>{{ $value['name'] }}</td>
-                                <td>
+                                <td width="20">
                                     <select class="form-control" name="count[]">
                                         @for($i = 0; $i <= 50; $i++)
-                                            <option value="{{$i}}" @if($value['count'] == $i) selected @endif>{{ $i }}</option>
+                                            <option value="{{$i}}" @if($value['count'] == $i) selected @endif style="width: 25px">{{ $i }}</option>
                                         @endfor
                                     </select>
 
