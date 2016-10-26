@@ -5,6 +5,9 @@ Auth::routes();
 Route::get('auth/activate','Auth\ActivateController@activate');
 
 Route::get('home', 'HomeController@index');
+Route::get('main', 'HomeController@mainInfo');
+Route::post('main', 'HomeController@result');
+
 Route::get('/', 'HomeController@index');
 Route::get('welcome', 'HomeController@welcome');
 Route::get('aboutus', 'HomeController@about');

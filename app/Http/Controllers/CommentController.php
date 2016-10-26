@@ -12,9 +12,16 @@ class CommentController extends Controller
 {
     public function editAction(Request $request, Goods $goods)
     {
+//        $this->validate($request,[
+//           'user_name' => 'required|unique:users,name|max:255',
+//            'text' => 'required|email|min:10',
+//            'email' => 'required|email|max:255',
+//        ]);
+
         $goods->comments()->create([
             'user_name' => $request->user_name,
             'text' => $request->text,
+            'email' => $request->email,
             'goods_id' => $request->goods_id,
         ]);
 

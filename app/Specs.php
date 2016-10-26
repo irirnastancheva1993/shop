@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Specs extends Model
 {
-    protected $fillable = ['id', 'name'];
+    protected $fillable = ['goods_id', 'spacs_id', 'value'];
 
     public function goods()
     {

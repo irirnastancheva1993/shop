@@ -7,8 +7,6 @@ use App\Goods;
 use App\Categories;
 use App\Images;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\PaginationServiceProvider;
 use App\Http\Requests;
 
 class GoodsController extends Controller
@@ -42,16 +40,11 @@ class GoodsController extends Controller
         $category = Categories::find($id);
         $goods = \DB::table('goods')->where('categories_id', $id)->paginate(3);
 //        $goods = Categories::find($id)->goods;
-
-
         $images = [];
         foreach ($goods as $good){
             $url_image = \DB::table('images')->select('url')->where('goods_id', $good->id)->first();
                 $images[] = ['id' => $good->id, 'url' => $url_image->url];
         }
-
-
-
 
 //        $images = Categories::find($id)->images;
 ////        var_dump($images);die;
