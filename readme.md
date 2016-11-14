@@ -1,27 +1,33 @@
-# Laravel PHP Framework
-
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+# Стартовая страница
+ ![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/1.png)
+# Авторизация
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/3.png)
+# Регистрация
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/4.png)
+# Отображение всех товаров
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/2.png)
+# Результат поиска товара
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/5.png)
+# Страница О НАС
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/6.png)
+# Применение фильтров к товарам
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/7.png)
+# Вывод категорий товаров
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/8.png)
+# Вывод товаров по категории 
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/9.png)
+# Описание товара и добавление комментария
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/10_a.png)
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/10_b.png)
+# Корзина товаров
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/11.png)
+# Сообщение об успешном заказе товаров
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/12.png)
+# Вход в административную панель
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/13.png)
+# Админка
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/14.png)
+# Страница редактирование пользователей 
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/15.png)
+# Страница редактирование товаров
+![Image alt](https://github.com/irirnastancheva1993/shop/blob/master/images/16.png)
